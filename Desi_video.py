@@ -172,7 +172,7 @@ async def auto_post():
                             f"🔥 <b>{item['name'].strip()}</b>\n"
                             f"✦▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬✦\n"
                             f"😮 {item.get('description', 'No description available.')}\n\n"
-                            f"<b>⚡️ Stay tuned for more videos on our channel!</b>"
+                            f"<b>⚡️ Ese majedar vedeo aate rhenge!</b>"
                         )
 
                         file_name = f"video_{idx}_{random.randint(1000,9999)}.mp4"
@@ -216,7 +216,7 @@ async def auto_post():
         except Exception as e:
             logger.exception(f"🚨 Auto post error: {e}")
         
-        logger.info("🕒 Sleeping for 5 minutes before next round...")
+        logger.info("🕒 Sleeping for 2 minutes before next round...")
         await asyncio.sleep(100)
 
 @bot.on_message(filters.command("start"))
