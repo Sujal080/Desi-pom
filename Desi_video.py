@@ -40,7 +40,7 @@ def get_random_headers():
 API_ID = int(os.environ.get("API_ID", 26330942))
 API_HASH = os.environ.get("API_HASH", "5de9fd033aa828dfd3bf0c28adeee660")
 BOT_TOKEN = os.environ.get("BOT_TOKEN", "7363509425:AAF92zS7bv50rpuH6NtlaCN-BOf1GmTaMAM")
-CHANNEL_ID = -1002832680035
+CHANNEL_ID = -1002821255521
 
 BLACKLIST_FILE = "blacklist.txt"
 
