@@ -210,17 +210,17 @@ async def auto_post():
                             logger.error(f"❌ Error sending video: {e}")
 
                         # Delay between each video
-                        await asyncio.sleep(30)  # <-- To avoid Telegram rate limit
+                        await asyncio.sleep(10)  # <-- To avoid Telegram rate limit
 
                 logger.info(f"✅ Finished API: {selected_api} | Videos posted: {success_count}")
-                await asyncio.sleep(60)  # Wait between APIs
+                await asyncio.sleep(30)  # Wait between APIs
 
         except Exception as e:
             logger.exception(f"🚨 Auto post error: {e}")
         
         # After full round
         logger.info("🕒 Sleeping for 5 minutes before next round...")
-        await asyncio.sleep(300)
+        await asyncio.sleep(100)
 
 @bot.on_message(filters.command("start"))
 async def start_bot(client, message):
