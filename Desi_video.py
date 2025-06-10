@@ -41,8 +41,6 @@ API_ID = int(os.environ.get("API_ID", 26330942))
 API_HASH = os.environ.get("API_HASH", "5de9fd033aa828dfd3bf0c28adeee660")
 BOT_TOKEN = os.environ.get("BOT_TOKEN", "7363509425:AAF92zS7bv50rpuH6NtlaCN-BOf1GmTaMAM")
 CHANNEL_ID = -1002832680035
-# Hey man your ☝️ channel ID direct add here
-
 
 BLACKLIST_FILE = "blacklist.txt"
 
@@ -152,7 +150,7 @@ async def auto_post():
 
                     if not api_data:
                         logger.warning(f"⚠️ No data from API: {selected_api}")
-                        await asyncio.sleep(60)  # wait before next API
+                        await asyncio.sleep(60)
                         continue
 
                     success_count = 0
@@ -161,7 +159,8 @@ async def auto_post():
                             logger.warning(f"❌ Invalid item at index {idx}: {item}")
                             continue
 
-                        video_name = item['name'].strip()
+                        # ✅ Repeat problem fix: video_name made unique
+                        video_name = f"{item['name'].strip()}_{item['content_url'][-8:]}"
                         video_url = item['content_url']
                         thumb_url = item.get('thumbnail')
 
@@ -170,7 +169,7 @@ async def auto_post():
                             continue
 
                         caption = (
-                            f"🔥 <b>{video_name}</b>\n"
+                            f"🔥 <b>{item['name'].strip()}</b>\n"
                             f"✦▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬✦\n"
                             f"😮 {item.get('description', 'No description available.')}\n\n"
                             f"<b>⚡️ Stay tuned for more videos on our channel!</b>"
@@ -209,16 +208,14 @@ async def auto_post():
                         except Exception as e:
                             logger.error(f"❌ Error sending video: {e}")
 
-                        # Delay between each video
-                        await asyncio.sleep(10)  # <-- To avoid Telegram rate limit
+                        await asyncio.sleep(10)
 
                 logger.info(f"✅ Finished API: {selected_api} | Videos posted: {success_count}")
-                await asyncio.sleep(30)  # Wait between APIs
+                await asyncio.sleep(30)
 
         except Exception as e:
             logger.exception(f"🚨 Auto post error: {e}")
         
-        # After full round
         logger.info("🕒 Sleeping for 5 minutes before next round...")
         await asyncio.sleep(100)
 
