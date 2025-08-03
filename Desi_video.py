@@ -108,7 +108,7 @@ async def download_video(video_url, output_path):
         )
         
         try:
-            await asyncio.wait_for(process.communicate(), timeout=300)
+            await asyncio.wait_for(process.communicate(), timeout=150)
         except asyncio.TimeoutError:
             logger.error("Download timed out")
             process.kill()
@@ -210,7 +210,7 @@ async def auto_post():
                             logger.error(f"❌ Error sending video: {e}")
 
                         # Delay between each video
-                        await asyncio.sleep(30)  # <-- To avoid Telegram rate limit
+                        await asyncio.sleep(18)  # <-- To avoid Telegram rate limit
 
                 logger.info(f"✅ Finished API: {selected_api} | Videos posted: {success_count}")
                 await asyncio.sleep(60)  # Wait between APIs
@@ -220,7 +220,7 @@ async def auto_post():
         
         # After full round
         logger.info("🕒 Sleeping for 5 minutes before next round...")
-        await asyncio.sleep(300)
+        await asyncio.sleep(120)
 
 @bot.on_message(filters.command("start"))
 async def start_bot(client, message):
